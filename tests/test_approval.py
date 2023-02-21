@@ -22,5 +22,6 @@ def test_scenarios(remote_contract, calling_contract, accounts, owner):
     callingContract.approve_remote({"from": owner})
     print(remoteContract.isApprovedForAll(owner, calling_address, {"from": owner}))
 
+    print(callingContract.test_asOperator({"from": owner}))
+
     print(callingContract.checkApproved_remote(owner, calling_address,{"from": owner}))  
-    

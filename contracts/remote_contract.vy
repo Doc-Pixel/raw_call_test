@@ -7,6 +7,9 @@ event Approved:
     operator: address
     approved: bool
 
+event evtAsOperator:
+    whoCalled: address
+
 @nonpayable
 @external
 def setApprovalForAll(operator:address, approved: bool):
@@ -16,3 +19,10 @@ def setApprovalForAll(operator:address, approved: bool):
 @external
 def isApprovedForAll(owner: address, operator: address) -> bool:
     return self.operators[owner][operator]
+
+@external
+def asOperator(owner: address) -> String[16]:
+    # assert self.operators[owner][msg.sender], 'not having any of this'
+    response: String[16] = 'responseee!'
+    log evtAsOperator(msg.sender)
+    return response

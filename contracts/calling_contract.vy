@@ -5,7 +5,7 @@ remoteAddress: address
 interface remoteContract:
     def setApprovalForAll(operator:address, approved: bool): nonpayable
     def isApprovedForAll(owner: address, operator: address) -> bool: nonpayable
-
+    def asOperator(owner: address) -> String[16]: nonpayable
 
 @external
 def __init__(remoteAddress:address):
@@ -35,3 +35,7 @@ def approve_remote():
 def checkApproved_remote(owner:address, operator:address) -> bool:
     assert remoteContract(self.remoteAddress).isApprovedForAll(owner, operator), "not approved"
     return True
+
+@external
+def test_asOperator() -> String[16]:
+    return remoteContract(self.remoteAddress).asOperator(msg.sender)
